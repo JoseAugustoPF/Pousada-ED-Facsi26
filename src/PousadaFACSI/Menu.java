@@ -108,26 +108,75 @@ public class Menu{
                 );
             }
         }
+        System.out.println("\n===== HOSPEDAGENS CADASTRADAS =====");
+        if (pousada.getHospedagens().isEmpty()) {
+            System.out.println("Nenhuma hospedagem cadastrada.");
+        } else {
+            for (Hospedagem hospedagem : pousada.getHospedagens()) {
+                System.out.println(
+                        "Hóspede: " + hospedagem.getHospede() +
+                                " | Documento: " + hospedagem.getDocumento() +
+                                " | Check-in: " + hospedagem.getCheckin() +
+                                " | Check-out: " + hospedagem.getCheckout() +
+                                " | Quarto: " +
+                                (hospedagem.getQuarto() == null
+                                        ? "Lista de espera"
+                                        : hospedagem.getQuarto().getNumero())
+                );
+            }
+        }
     }
 
     private void consultarDetalhes() {
-
         if (pousada.getHospedagens().isEmpty()) {
             System.out.println("\nSem hospedagens cadastradas.");
+            return;
+        }
+        System.out.print("\nDigite o documento do hóspede: ");
+        String documento = scanner.nextLine();
+        Hospedagem hospedagemEncontrada = null;
+        for (Hospedagem hospedagem : pousada.getHospedagens()) {
+            if (hospedagem.getDocumento().equals(documento)) {
+                hospedagemEncontrada = hospedagem;
+                break;
+            }
+        }
+        if (hospedagemEncontrada == null) {
+            System.out.println("\nNenhuma hospedagem encontrada para esse documento.");
+            return;
+        }
+        System.out.println("\n===== DETALHES DA HOSPEDAGEM =====");
+        System.out.println("Hóspede: " + hospedagemEncontrada.getHospede());
+        System.out.println("Documento: " + hospedagemEncontrada.getDocumento());
+        System.out.println("Check-in: " + hospedagemEncontrada.getCheckin());
+        System.out.println("Check-out: " + hospedagemEncontrada.getCheckout());
+        if (hospedagemEncontrada.getQuarto() == null) {
+            System.out.println("Situação: Lista de espera");
         } else {
-            System.out.print("\nDigite o documento do hóspede: ");
-            String documento = scanner.nextLine();
-            boolean encontrado = false;
-            for (Hospedagem hospedagem : pousada.getHospedagens()) {
-                if (hospedagem.getDocumento().equals(documento)) {
-                    System.out.println("\n===== HOSPEDAGEM ENCONTRADA =====");
-                    encontrado = true;
-                    break;
-                }
+            System.out.println("Situação: Quarto reservado");
+            System.out.println("Quarto: " + hospedagemEncontrada.getQuarto().getNumero());
+            System.out.println("Tipo: " + hospedagemEncontrada.getQuarto().getTipo());
+            System.out.println("Capacidade: " + hospedagemEncontrada.getQuarto().getCapacidade());
+        }
+        System.out.println("\n===== CONSUMOS =====");
+        if (hospedagemEncontrada.getConsumos().isEmpty()) {
+            System.out.println("Nenhum consumo registrado.");
+        } else {
+            for (Consumo consumo : hospedagemEncontrada.getConsumos()) {
+                System.out.println(consumo);
             }
-            if (!encontrado) {
-                System.out.println("\nNenhuma hospedagem encontrada para esse documento.");
-            }
+        }
+        if (hospedagemEncontrada.getQuarto() != null) {
+            System.out.println("\n===== RESUMO FINANCEIRO =====");
+            System.out.printf("Diárias: %d%n", hospedagemEncontrada.diarias());
+            System.out.printf("Total das diárias: R$ %.2f%n",
+                    hospedagemEncontrada.diarias() * hospedagemEncontrada.getQuarto().valorDiaria());
+            System.out.printf("Total dos consumos: R$ %.2f%n",
+                    hospedagemEncontrada.totalConsumo());
+            System.out.printf("Taxa de serviço: R$ %.2f%n",
+                    hospedagemEncontrada.taxaServico());
+            System.out.printf("TOTAL: R$ %.2f%n",
+                    hospedagemEncontrada.total());
         }
     }
 
@@ -282,6 +331,34 @@ public class Menu{
     }
 
     private void buscarHospedagem() {
+        System.out.print("\nDigite o documento do hóspede: ");
+        String documento = scanner.nextLine();
+        Hospedagem hospedagemEncontrada = null;
+        for (Hospedagem hospedagem : pousada.getHospedagens()) {
+            if (hospedagem.getDocumento().equals(documento)) {
+                hospedagemEncontrada = hospedagem;
+                break;
+            }
+        }
+        if (hospedagemEncontrada == null) {
+            System.out.println("\nNenhuma hospedagem encontrada para esse documento.");
+            return;
+        }
+        System.out.println("\n===== HOSPEDAGEM ENCONTRADA =====");
+        System.out.println("Hóspede: " + hospedagemEncontrada.getHospede());
+        System.out.println("Documento: " + hospedagemEncontrada.getDocumento());
+        System.out.println("Check-in: " + hospedagemEncontrada.getCheckin());
+        System.out.println("Check-out: " + hospedagemEncontrada.getCheckout());
+        if (hospedagemEncontrada.getQuarto() == null) {
+            System.out.println("Situação: Lista de espera");
+        } else {
+            System.out.println("Situação: Quarto reservado");
+            System.out.println("Quarto: " + hospedagemEncontrada.getQuarto().getNumero());
+            System.out.println("Tipo: " + hospedagemEncontrada.getQuarto().getTipo());
+        }
+    }
+
+    private void cadastrarHospedagem() {
         System.out.print("\nDigite o nome do hóspede: ");
         String hospede = scanner.nextLine();
         System.out.print("Digite o documento do hóspede: ");
@@ -302,8 +379,10 @@ public class Menu{
         LocalDate checkout = null;
         while (checkout == null || !checkout.isAfter(checkin)) {
             System.out.print("Digite a data de checkout (AAAA-MM-DD): ");
+
             try {
                 LocalDate dataInformada = LocalDate.parse(scanner.nextLine());
+
                 if (!dataInformada.isAfter(checkin)) {
                     System.out.println("Erro: o checkout deve ser posterior ao check-in.");
                 } else {
@@ -366,7 +445,7 @@ public class Menu{
                 opcao = Integer.parseInt(scanner.nextLine());
                 switch (opcao) {
                     case 1:
-                        buscarHospedagem();
+                        cadastrarHospedagem();
                         break;
                     case 2:
                         cancelarHospedagem();
@@ -413,11 +492,19 @@ public class Menu{
         System.out.println("Check-in: " + hospedagemEncontrada.getCheckin());
         System.out.println("Check-out: " + hospedagemEncontrada.getCheckout());
         System.out.print("\nTem certeza de que deseja cancelar esta hospedagem? (S/N): ");
-
         String confirmacao = scanner.nextLine();
         if (confirmacao.equalsIgnoreCase("S")) {
-            pousada.cancelarHospedagem(hospedagemEncontrada);
+            Hospedagem promovida = pousada.cancelarHospedagem(hospedagemEncontrada);
             System.out.println("Hospedagem cancelada com sucesso!");
+            if (promovida != null) {
+                System.out.println("\n===== VAGA LIBERADA =====");
+                System.out.println("O hóspede " + promovida.getHospede()
+                        + " foi retirado da lista de espera.");
+                System.out.println("Quarto " + promovida.getQuarto().getNumero()
+                        + " alocado com sucesso!");
+            } else {
+                System.out.println("Nenhum hóspede da lista de espera foi alocado.");
+            }
         } else {
             System.out.println("Cancelamento interrompido.");
         }
@@ -556,7 +643,7 @@ public class Menu{
         }
         String relatorio = pousada.fechamento(ano, mes);
         System.out.println("\n" + relatorio);
-        File pasta = new File("saídas");
+        File pasta = new File("saidas");
         if (!pasta.exists()) {
             pasta.mkdirs();
         }
