@@ -1,8 +1,9 @@
 package PousadaFACSI;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
-public class Menu {
+public class Menu{
 
     private Scanner scanner;
     private Pousada pousada;
@@ -13,11 +14,8 @@ public class Menu {
     }
 
     public void iniciar() {
-
         int opcao = 0;
-
         do{
-
             System.out.println("\n===== POUSADA FACSI =====");
             System.out.println("1 - Listar quartos e hospedagens");
             System.out.println("2 - Consultar detalhes");
@@ -41,50 +39,39 @@ public class Menu {
                 }else {
 
                 switch (opcao) {
-
                     case 1:
                         listarQuartos();
                         break;
-
                     case 2:
                         consultarDetalhes();
                         break;
-
                     case 3:
                         cadastrarQuarto();
                         break;
-
                     case 4:
                         adicionarConsumo();
                         break;
                     case 5:
-                        System.out.println("Removendo quarto...");
+                        removerQuarto();
                         break;
-
                     case 6:
-                        System.out.println("Removendo consumo...");
+                        removerConsumo();
                         break;
-
                     case 7:
-                        System.out.println("Buscando hospedagem...");
+                        cadastrarHospedagem();
                         break;
-
                     case 8:
-                        System.out.println("Abrindo operações específicas...");
+                        menuOperacoes();
                         break;
-
                     case 9:
                         System.out.println("Abrindo relatórios...");
                         break;
-
                     case 10:
                         System.out.println("Salvando dados...");
                         break;
-
                     case 11:
                         System.out.println("Encerrando o sistema...");
                         break;
-
                     default:
                         System.out.println("Opção inválida!");
                         break;
@@ -163,16 +150,28 @@ public class Menu {
         System.out.print("Digite a capacidade do quarto: ");
         int capacidade = Integer.parseInt(scanner.nextLine());
         Quarto quarto = new Quarto(numero, tipo, capacidade);
-
-        pousada.adicionarQuarto(quarto);
-        System.out.println("Quarto cadastrado com sucesso!");
+        try {
+            pousada.adicionarQuarto(quarto);
+            System.out.println("Quarto cadastrado com sucesso!");
+        } catch (IllegalArgumentException erro) {
+            System.out.println("Não foi possível cadastrar: " + erro.getMessage());
+        }
     }
 
     private void adicionarConsumo() {
         System.out.println("Digite o documento do hóspede: ");
         String documento = scanner.nextLine();
-        System.out.print("Digite a data do consumo (AAAA-MM-DD): ");
-        LocalDate data = LocalDate.parse(scanner.nextLine());
+        LocalDate data = null;
+
+        while (data == null) {
+            System.out.print("Digite a data do consumo (AAAA-MM-DD): ");
+
+            try {
+                data = LocalDate.parse(scanner.nextLine());
+            } catch (DateTimeParseException erro) {
+                System.out.println("Data inválida! Digite no formato AAAA-MM-DD.");
+            }
+        }
         System.out.print("Digite a descrição do consumo: ");
         String descricao = scanner.nextLine();
         System.out.print("Digite a quantidade consumida: ");
@@ -193,6 +192,292 @@ public class Menu {
         if (!encontrado) {
             System.out.println("Nenhuma hospedagem encontrada para esse documento.");
             return;
+        }
+    }
+
+    private void removerQuarto() {
+        System.out.print("\nDigite o número do quarto que deseja remover: ");
+        int numero = Integer.parseInt(scanner.nextLine());
+        Quarto quartoEncontrado = null;
+        for (Quarto quarto : pousada.getQuartos()) {
+            if (quarto.getNumero().equals(numero)) {
+                quartoEncontrado = quarto;
+                break;
+            }
+        }
+        if (quartoEncontrado == null) {
+            System.out.println("O quarto não foi encontrado.");
+            return;
+        }
+        System.out.println("Quarto encontrado: " + numero);
+        System.out.print("Tem certeza de que deseja removê-lo? (S/N): ");
+
+        String confirmacao = scanner.nextLine();
+
+        if (confirmacao.equalsIgnoreCase("S")) {
+            try {
+                pousada.removerQuarto(quartoEncontrado);
+                System.out.println("Quarto removido com sucesso!");
+            } catch (IllegalArgumentException erro) {
+                System.out.println("Não foi possível remover: " + erro.getMessage());
+            }
+        } else {
+            System.out.println("Remoção cancelada.");
+        }
+    }
+
+    private void removerConsumo() {
+        System.out.print("\nDigite o documento do hóspede: ");
+        String documento = scanner.nextLine();
+        Hospedagem hospedagemEncontrada = null;
+        for (Hospedagem hospedagem : pousada.getHospedagens()) {
+            if (hospedagem.getDocumento().equals(documento)) {
+                hospedagemEncontrada = hospedagem;
+                break;
+            }
+        }
+        if (hospedagemEncontrada == null) {
+            System.out.println("Hospedagem não encontrada!");
+            return;
+        }
+        if (hospedagemEncontrada.getConsumos().isEmpty()) {
+            System.out.println("Essa hospedagem não possui consumos registrados.");
+            return;
+        }
+        System.out.println("\n===== CONSUMOS DA HOSPEDAGEM =====");
+        int contador = 1;
+        for (Consumo consumo : hospedagemEncontrada.getConsumos()) {
+            System.out.println(contador + " - " + consumo);
+            contador++;
+        }
+        System.out.print("\nDigite o número do consumo que deseja remover: ");
+        int indice = Integer.parseInt(scanner.nextLine());
+        if (indice < 1 || indice > hospedagemEncontrada.getConsumos().size()) {
+            System.out.println("Número de consumo inválido!");
+            return;
+        }
+        Consumo consumoRemover = hospedagemEncontrada.getConsumos().get(indice - 1);
+        System.out.println("Consumo selecionado: " + consumoRemover);
+        System.out.print("Tem certeza de que deseja remover? (S/N): ");
+
+        String confirmacao = scanner.nextLine();
+
+        if (confirmacao.equalsIgnoreCase("S")) {
+            hospedagemEncontrada.removerConsumo(consumoRemover);
+            System.out.println("Consumo removido com sucesso!");
+        } else {
+            System.out.println("Remoção cancelada.");
+        }
+    }
+
+    private void cadastrarHospedagem() {
+        System.out.print("\nDigite o nome do hóspede: ");
+        String hospede = scanner.nextLine();
+        System.out.print("Digite o documento do hóspede: ");
+        String documento = scanner.nextLine();
+        LocalDate checkin = null;
+        while (checkin == null) {
+            System.out.print("Digite a data de check-in (AAAA-MM-DD): ");
+            try {
+                checkin = LocalDate.parse(scanner.nextLine());
+            } catch (DateTimeParseException erro) {
+                System.out.println("Data inválida! Utilize o formato AAAA-MM-DD.");
+            }
+        }
+        if (checkin.isBefore(LocalDate.now())) {
+            System.out.println("O check-in não pode ser anterior à data atual.");
+            return;
+        }
+        LocalDate checkout = null;
+        while (checkout == null || !checkout.isAfter(checkin)) {
+            System.out.print("Digite a data de checkout (AAAA-MM-DD): ");
+            try {
+                LocalDate dataInformada = LocalDate.parse(scanner.nextLine());
+                if (!dataInformada.isAfter(checkin)) {
+                    System.out.println("Erro: o checkout deve ser posterior ao check-in.");
+                } else {
+                    checkout = dataInformada;
+                }
+            } catch (DateTimeParseException erro) {
+                System.out.println("Data inválida! Utilize o formato AAAA-MM-DD.");
+            }
+        }
+        System.out.println("\nTipos de quarto disponíveis:");
+        System.out.println("1 - STANDARD");
+        System.out.println("2 - LUXO");
+        System.out.println("3 - SUITE");
+        System.out.print("Escolha o tipo de quarto: ");
+        int opcaoTipo = Integer.parseInt(scanner.nextLine());
+        TipoQuarto tipo = null;
+        switch (opcaoTipo) {
+            case 1:
+                tipo = TipoQuarto.STANDARD;
+                break;
+            case 2:
+                tipo = TipoQuarto.LUXO;
+                break;
+            case 3:
+                tipo = TipoQuarto.SUITE;
+                break;
+            default:
+                System.out.println("Tipo de quarto inválido!");
+                return;
+        }
+        Hospedagem hospedagem;
+        try {
+            hospedagem = new Hospedagem(hospede, documento, checkin, checkout, tipo);
+        } catch (IllegalArgumentException erro) {
+            System.out.println("Erro no cadastro: " + erro.getMessage());
+            return;
+        }
+        boolean registrada = pousada.registrarHospedagem(hospedagem);
+        if (registrada) {
+            System.out.println("Hospedagem registrada com sucesso! Quarto reservado.");
+        } else {
+            System.out.println("Não há quarto disponível desse tipo no período solicitado.");
+            System.out.println("Hóspede adicionado à lista de espera.");
+        }
+    }
+
+    private void menuOperacoes() {
+        int opcao;
+        do {
+            System.out.println("\n===== OPERAÇÕES ESPECÍFICAS =====");
+            System.out.println("1 - Cadastrar hospedagem (reserva)");
+            System.out.println("2 - Cancelar hospedagem");
+            System.out.println("3 - Lançar consumo");
+            System.out.println("4 - Emitir conta");
+            System.out.println("5 - Mapa de ocupação");
+            System.out.println("0 - Voltar ao menu principal");
+
+            System.out.print("\nEscolha uma opção: ");
+            try {
+                opcao = Integer.parseInt(scanner.nextLine());
+                switch (opcao) {
+                    case 1:
+                        cadastrarHospedagem();
+                        break;
+                    case 2:
+                        cancelarHospedagem();
+                        break;
+                    case 3:
+                        adicionarConsumo();
+                        break;
+                    case 4:
+                        emitirConta();
+                        break;
+                    case 5:
+                        mapaOcupacao();
+                        break;
+                    case 0:
+                        System.out.println("Voltando ao menu principal...");
+                        break;
+                    default:
+                        System.out.println("Opção inválida!");
+                }
+            } catch (NumberFormatException erro) {
+                System.out.println("Digite um número válido!");
+                opcao = -1;
+            }
+        } while (opcao != 0);
+    }
+
+    private void cancelarHospedagem() {
+        System.out.print("\nDigite o documento do hóspede: ");
+        String documento = scanner.nextLine();
+        Hospedagem hospedagemEncontrada = null;
+        for (Hospedagem hospedagem : pousada.getHospedagens()) {
+            if (hospedagem.getDocumento().equals(documento)) {
+                hospedagemEncontrada = hospedagem;
+                break;
+            }
+        }
+        if (hospedagemEncontrada == null) {
+            System.out.println("Nenhuma hospedagem encontrada para esse documento.");
+            return;
+        }
+        System.out.println("\n===== HOSPEDAGEM ENCONTRADA =====");
+        System.out.println("Hóspede: " + hospedagemEncontrada.getHospede());
+        System.out.println("Documento: " + hospedagemEncontrada.getDocumento());
+        System.out.println("Check-in: " + hospedagemEncontrada.getCheckin());
+        System.out.println("Check-out: " + hospedagemEncontrada.getCheckout());
+        System.out.print("\nTem certeza de que deseja cancelar esta hospedagem? (S/N): ");
+
+        String confirmacao = scanner.nextLine();
+        if (confirmacao.equalsIgnoreCase("S")) {
+            pousada.cancelarHospedagem(hospedagemEncontrada);
+            System.out.println("Hospedagem cancelada com sucesso!");
+        } else {
+            System.out.println("Cancelamento interrompido.");
+        }
+    }
+
+    private void emitirConta() {
+        System.out.print("\nDigite o documento do hóspede: ");
+        String documento = scanner.nextLine();
+        Hospedagem hospedagemEncontrada = null;
+        for (Hospedagem hospedagem : pousada.getHospedagens()) {
+            if (hospedagem.getDocumento().equals(documento)) {
+                hospedagemEncontrada = hospedagem;
+                break;
+            }
+        }
+        if (hospedagemEncontrada == null) {
+            System.out.println("Nenhuma hospedagem encontrada para esse documento.");
+            return;
+        }
+        if (hospedagemEncontrada.getQuarto() == null) {
+            System.out.println("Não é possível emitir a conta: hospedagem ainda está na lista de espera.");
+            return;
+        }
+        System.out.println("\n========== CONTA DA HOSPEDAGEM ==========");
+        System.out.println("Hóspede: " + hospedagemEncontrada.getHospede());
+        System.out.println("Documento: " + hospedagemEncontrada.getDocumento());
+        System.out.println("Check-in: " + hospedagemEncontrada.getCheckin());
+        System.out.println("Check-out: " + hospedagemEncontrada.getCheckout());
+        System.out.println("Quarto: " + hospedagemEncontrada.getQuarto().getNumero());
+        System.out.println("----------------------------------------");
+        System.out.println("Diárias: " + hospedagemEncontrada.diarias());
+        System.out.printf("Total das diárias: R$ %.2f%n",
+                hospedagemEncontrada.diarias() * hospedagemEncontrada.getQuarto().valorDiaria());
+        System.out.printf("Total dos consumos: R$ %.2f%n",
+                hospedagemEncontrada.totalConsumo());
+        System.out.printf("Taxa de serviço (10%%): R$ %.2f%n",
+                hospedagemEncontrada.taxaServico());
+        System.out.println("----------------------------------------");
+        System.out.printf("TOTAL A PAGAR: R$ %.2f%n",
+                hospedagemEncontrada.total());
+    }
+
+    private void mapaOcupacao() {
+        LocalDate data = null;
+        while (data == null) {
+            System.out.print("\nDigite a data para consultar a ocupação (AAAA-MM-DD): ");
+            try {
+                data = LocalDate.parse(scanner.nextLine());
+            } catch (DateTimeParseException erro) {
+                System.out.println("Data inválida! Utilize o formato AAAA-MM-DD.");
+            }
+        }
+        if (pousada.getQuartos().isEmpty()) {
+            System.out.println("Não existem quartos cadastrados na pousada.");
+            return;
+        }
+        System.out.println("\nMAPA DE OCUPAÇÃO - " + data);
+        System.out.println("--------------------------------");
+        for (Quarto quarto : pousada.getQuartos()) {
+            boolean ocupado = false;
+            for (Hospedagem hospedagem : pousada.getHospedagens()) {
+                if (hospedagem.getQuarto() == quarto && !data.isBefore(hospedagem.getCheckin()) && data.isBefore(hospedagem.getCheckout())){
+                    ocupado = true;
+                    break;
+                }
+            }
+            if (ocupado) {
+                System.out.println("Quarto " + quarto.getNumero() + ": OCUPADO");
+            } else {
+                System.out.println("Quarto " + quarto.getNumero() + ": LIVRE");
+            }
         }
     }
 

@@ -51,4 +51,12 @@ public class Consumo {
         }
         this.precoUnitario = precoUnitario;
     }
+    @Override
+    public String toString() {
+        return "Data: " + data +
+                " | Descrição: " + descricao +
+                " | Quantidade: " + quantidade +
+                " | Preço unitário: R$ " + precoUnitario +
+                " | Subtotal: R$ " + subtotal();
+    }
 }
