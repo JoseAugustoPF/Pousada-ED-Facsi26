@@ -1,0 +1,323 @@
+Pousada Recanto do Tocantins;Maraba
+QUARTOS;20
+101;STANDARD;2
+102;STANDARD;2
+103;STANDARD;2
+104;STANDARD;2
+105;STANDARD;2
+106;STANDARD;2
+107;STANDARD;2
+108;STANDARD;2
+201;LUXO;3
+202;LUXO;3
+203;LUXO;3
+204;LUXO;3
+205;LUXO;3
+206;LUXO;3
+207;LUXO;3
+301;SUITE;4
+302;SUITE;4
+303;SUITE;4
+304;SUITE;4
+305;SUITE;4
+HOSPEDAGENS;100
+Ana Oliveira;10000000001;101;04/08/2026;05/08/2026;2
+04/08/2026;Suco de cupuacu;2;9.00
+04/08/2026;Tacaca;2;18.00
+Rafael Souza;10000000002;101;07/08/2026;11/08/2026;2
+07/08/2026;Cafe da manha extra;2;25.00
+10/08/2026;Passeio de barco;2;80.00
+Elaine Lima;10000000003;101;11/08/2026;15/08/2026;2
+11/08/2026;Suco de cupuacu;3;9.00
+11/08/2026;Passeio de barco;3;80.00
+Carla Costa;10000000004;101;21/08/2026;23/08/2026;2
+22/08/2026;Peixe frito (porcao);2;48.00
+22/08/2026;Passeio de barco;2;80.00
+Heitor Costa;10000000005;101;24/08/2026;27/08/2026;2
+25/08/2026;Peixe frito (porcao);1;48.00
+25/08/2026;Cafe da manha extra;2;25.00
+Gabriela Lima;10000000006;102;02/08/2026;04/08/2026;2
+04/08/2026;Tacaca;1;18.00
+04/08/2026;Suco de cupuacu;3;9.00
+Lucas Almeida;10000000007;102;08/08/2026;10/08/2026;2
+08/08/2026;Jantar regional;3;55.00
+10/08/2026;Refrigerante lata;2;7.50
+Paula Ferreira;10000000008;102;13/08/2026;15/08/2026;2
+13/08/2026;Suco de cupuacu;1;9.00
+15/08/2026;Tacaca;1;18.00
+Diego Costa;10000000009;102;22/08/2026;26/08/2026;2
+23/08/2026;Jantar regional;3;55.00
+25/08/2026;Suco de cupuacu;2;9.00
+Mariana Ferreira;10000000010;102;02/09/2026;04/09/2026;2
+02/09/2026;Agua de coco;2;6.00
+02/09/2026;Peixe frito (porcao);1;48.00
+Mariana Souza;10000000011;103;04/08/2026;05/08/2026;2
+05/08/2026;Peixe frito (porcao);3;48.00
+04/08/2026;Suco de cupuacu;2;9.00
+Karina Almeida;10000000012;103;11/08/2026;16/08/2026;2
+14/08/2026;Peixe frito (porcao);2;48.00
+15/08/2026;Tacaca;1;18.00
+Felipe Almeida;10000000013;103;17/08/2026;18/08/2026;2
+18/08/2026;Tacaca;3;18.00
+18/08/2026;Suco de cupuacu;2;9.00
+Bruno Souza;10000000014;103;18/08/2026;20/08/2026;2
+20/08/2026;Jantar regional;2;55.00
+18/08/2026;Cafe da manha extra;3;25.00
+Carla Pereira;10000000015;103;27/08/2026;28/08/2026;2
+28/08/2026;Cafe da manha extra;2;25.00
+27/08/2026;Agua de coco;1;6.00
+Isabela Silva;10000000016;104;02/08/2026;06/08/2026;2
+06/08/2026;Refrigerante lata;1;7.50
+04/08/2026;Peixe frito (porcao);1;48.00
+Joao Rocha;10000000017;104;10/08/2026;13/08/2026;2
+13/08/2026;Cafe da manha extra;2;25.00
+13/08/2026;Passeio de barco;2;80.00
+Isabela Rocha;10000000018;104;14/08/2026;19/08/2026;2
+17/08/2026;Refrigerante lata;1;7.50
+18/08/2026;Cafe da manha extra;1;25.00
+Karina Almeida;10000000019;104;20/08/2026;21/08/2026;2
+21/08/2026;Agua de coco;1;6.00
+20/08/2026;Suco de cupuacu;1;9.00
+Gabriela Rocha;10000000020;104;21/08/2026;22/08/2026;2
+21/08/2026;Tacaca;2;18.00
+21/08/2026;Passeio de barco;2;80.00
+Heitor Carvalho;10000000021;105;04/08/2026;09/08/2026;2
+04/08/2026;Refrigerante lata;2;7.50
+06/08/2026;Agua de coco;1;6.00
+Karina Almeida;10000000022;105;10/08/2026;13/08/2026;2
+12/08/2026;Jantar regional;2;55.00
+10/08/2026;Tacaca;2;18.00
+Joao Rocha;10000000023;105;15/08/2026;18/08/2026;2
+18/08/2026;Tacaca;2;18.00
+18/08/2026;Agua de coco;1;6.00
+Paula Rocha;10000000024;105;25/08/2026;26/08/2026;2
+26/08/2026;Suco de cupuacu;1;9.00
+26/08/2026;Jantar regional;2;55.00
+Mariana Rocha;10000000025;105;02/09/2026;07/09/2026;2
+02/09/2026;Agua de coco;3;6.00
+02/09/2026;Suco de cupuacu;2;9.00
+Diego Costa;10000000026;106;04/08/2026;08/08/2026;2
+04/08/2026;Refrigerante lata;2;7.50
+04/08/2026;Tacaca;2;18.00
+Rafael Lima;10000000027;106;11/08/2026;13/08/2026;2
+12/08/2026;Suco de cupuacu;3;9.00
+11/08/2026;Suco de cupuacu;1;9.00
+Diego Carvalho;10000000028;106;14/08/2026;17/08/2026;2
+15/08/2026;Tacaca;3;18.00
+14/08/2026;Cafe da manha extra;2;25.00
+Felipe Carvalho;10000000029;106;23/08/2026;24/08/2026;2
+24/08/2026;Peixe frito (porcao);3;48.00
+24/08/2026;Cafe da manha extra;3;25.00
+Karina Silva;10000000030;106;31/08/2026;01/09/2026;2
+31/08/2026;Agua de coco;1;6.00
+01/09/2026;Tacaca;3;18.00
+Elaine Rocha;10000000031;107;01/08/2026;06/08/2026;2
+02/08/2026;Peixe frito (porcao);1;48.00
+03/08/2026;Peixe frito (porcao);3;48.00
+Karina Rocha;10000000032;107;12/08/2026;15/08/2026;2
+13/08/2026;Agua de coco;1;6.00
+12/08/2026;Passeio de barco;3;80.00
+Felipe Lima;10000000033;107;22/08/2026;24/08/2026;2
+24/08/2026;Refrigerante lata;1;7.50
+24/08/2026;Refrigerante lata;3;7.50
+Heitor Ferreira;10000000034;107;26/08/2026;27/08/2026;2
+27/08/2026;Agua de coco;3;6.00
+27/08/2026;Jantar regional;3;55.00
+Diego Pereira;10000000035;107;31/08/2026;02/09/2026;2
+01/09/2026;Cafe da manha extra;3;25.00
+02/09/2026;Refrigerante lata;2;7.50
+Karina Ferreira;10000000036;108;07/08/2026;10/08/2026;2
+09/08/2026;Jantar regional;1;55.00
+09/08/2026;Jantar regional;2;55.00
+Karina Oliveira;10000000037;108;15/08/2026;20/08/2026;2
+18/08/2026;Tacaca;2;18.00
+15/08/2026;Suco de cupuacu;3;9.00
+Lucas Ferreira;10000000038;108;21/08/2026;25/08/2026;2
+24/08/2026;Passeio de barco;3;80.00
+21/08/2026;Tacaca;1;18.00
+Bruno Carvalho;10000000039;108;31/08/2026;04/09/2026;2
+04/09/2026;Refrigerante lata;2;7.50
+02/09/2026;Agua de coco;1;6.00
+Mariana Almeida;10000000040;108;11/09/2026;15/09/2026;2
+13/09/2026;Suco de cupuacu;2;9.00
+12/09/2026;Cafe da manha extra;1;25.00
+Lucas Silva;10000000041;201;07/08/2026;09/08/2026;2
+07/08/2026;Cafe da manha extra;1;25.00
+09/08/2026;Jantar regional;2;55.00
+Karina Silva;10000000042;201;11/08/2026;14/08/2026;2
+11/08/2026;Suco de cupuacu;2;9.00
+11/08/2026;Tacaca;1;18.00
+Karina Silva;10000000043;201;14/08/2026;15/08/2026;2
+15/08/2026;Peixe frito (porcao);3;48.00
+15/08/2026;Peixe frito (porcao);1;48.00
+Lucas Almeida;10000000044;201;18/08/2026;22/08/2026;2
+20/08/2026;Agua de coco;3;6.00
+21/08/2026;Refrigerante lata;2;7.50
+Lucas Oliveira;10000000045;201;27/08/2026;28/08/2026;2
+27/08/2026;Refrigerante lata;3;7.50
+27/08/2026;Passeio de barco;1;80.00
+Ana Silva;10000000046;202;08/08/2026;11/08/2026;2
+09/08/2026;Suco de cupuacu;1;9.00
+11/08/2026;Refrigerante lata;1;7.50
+Carla Silva;10000000047;202;17/08/2026;19/08/2026;2
+19/08/2026;Cafe da manha extra;2;25.00
+19/08/2026;Agua de coco;3;6.00
+Elaine Ferreira;10000000048;202;25/08/2026;30/08/2026;2
+27/08/2026;Passeio de barco;2;80.00
+25/08/2026;Jantar regional;3;55.00
+Isabela Carvalho;10000000049;202;31/08/2026;02/09/2026;2
+31/08/2026;Tacaca;3;18.00
+31/08/2026;Refrigerante lata;1;7.50
+Lucas Oliveira;10000000050;202;03/09/2026;04/09/2026;2
+04/09/2026;Agua de coco;1;6.00
+03/09/2026;Cafe da manha extra;1;25.00
+Lucas Oliveira;10000000051;203;02/08/2026;03/08/2026;2
+02/08/2026;Agua de coco;1;6.00
+02/08/2026;Jantar regional;1;55.00
+Mariana Pereira;10000000052;203;10/08/2026;12/08/2026;2
+11/08/2026;Peixe frito (porcao);2;48.00
+10/08/2026;Cafe da manha extra;3;25.00
+Paula Souza;10000000053;203;14/08/2026;16/08/2026;2
+15/08/2026;Agua de coco;1;6.00
+15/08/2026;Jantar regional;3;55.00
+Paula Rocha;10000000054;203;19/08/2026;24/08/2026;2
+22/08/2026;Agua de coco;2;6.00
+19/08/2026;Agua de coco;2;6.00
+Joao Rocha;10000000055;203;30/08/2026;04/09/2026;2
+04/09/2026;Refrigerante lata;1;7.50
+03/09/2026;Suco de cupuacu;1;9.00
+Gabriela Silva;10000000056;204;07/08/2026;08/08/2026;2
+07/08/2026;Peixe frito (porcao);3;48.00
+07/08/2026;Cafe da manha extra;1;25.00
+Carla Carvalho;10000000057;204;15/08/2026;20/08/2026;2
+19/08/2026;Tacaca;1;18.00
+15/08/2026;Tacaca;3;18.00
+Joao Silva;10000000058;204;20/08/2026;25/08/2026;2
+20/08/2026;Agua de coco;3;6.00
+24/08/2026;Tacaca;3;18.00
+Rafael Pereira;10000000059;204;31/08/2026;05/09/2026;2
+31/08/2026;Passeio de barco;1;80.00
+01/09/2026;Cafe da manha extra;3;25.00
+Ana Almeida;10000000060;204;08/09/2026;09/09/2026;2
+09/09/2026;Suco de cupuacu;1;9.00
+09/09/2026;Agua de coco;2;6.00
+Rafael Pereira;10000000061;205;07/08/2026;10/08/2026;2
+09/08/2026;Refrigerante lata;2;7.50
+10/08/2026;Cafe da manha extra;1;25.00
+Elaine Carvalho;10000000062;205;14/08/2026;17/08/2026;2
+17/08/2026;Cafe da manha extra;1;25.00
+16/08/2026;Refrigerante lata;1;7.50
+Carla Costa;10000000063;205;17/08/2026;18/08/2026;2
+17/08/2026;Suco de cupuacu;2;9.00
+18/08/2026;Tacaca;2;18.00
+Paula Pereira;10000000064;205;23/08/2026;28/08/2026;2
+26/08/2026;Peixe frito (porcao);1;48.00
+26/08/2026;Agua de coco;3;6.00
+Mariana Souza;10000000065;205;28/08/2026;30/08/2026;2
+30/08/2026;Refrigerante lata;2;7.50
+30/08/2026;Peixe frito (porcao);1;48.00
+Gabriela Pereira;10000000066;206;04/08/2026;09/08/2026;2
+09/08/2026;Agua de coco;3;6.00
+08/08/2026;Passeio de barco;2;80.00
+Paula Lima;10000000067;206;10/08/2026;14/08/2026;2
+11/08/2026;Refrigerante lata;1;7.50
+12/08/2026;Agua de coco;2;6.00
+Bruno Lima;10000000068;206;15/08/2026;19/08/2026;2
+15/08/2026;Passeio de barco;3;80.00
+15/08/2026;Agua de coco;2;6.00
+Gabriela Rocha;10000000069;206;19/08/2026;24/08/2026;2
+20/08/2026;Refrigerante lata;2;7.50
+22/08/2026;Jantar regional;1;55.00
+Paula Costa;10000000070;206;30/08/2026;01/09/2026;2
+31/08/2026;Suco de cupuacu;2;9.00
+30/08/2026;Cafe da manha extra;3;25.00
+Ana Souza;10000000071;207;07/08/2026;09/08/2026;2
+08/08/2026;Refrigerante lata;1;7.50
+08/08/2026;Jantar regional;2;55.00
+Mariana Oliveira;10000000072;207;16/08/2026;17/08/2026;2
+17/08/2026;Jantar regional;3;55.00
+17/08/2026;Peixe frito (porcao);3;48.00
+Isabela Carvalho;10000000073;207;24/08/2026;27/08/2026;2
+26/08/2026;Passeio de barco;3;80.00
+24/08/2026;Refrigerante lata;3;7.50
+Ana Costa;10000000074;207;31/08/2026;01/09/2026;2
+31/08/2026;Refrigerante lata;1;7.50
+31/08/2026;Suco de cupuacu;1;9.00
+Joao Oliveira;10000000075;207;06/09/2026;07/09/2026;2
+07/09/2026;Peixe frito (porcao);3;48.00
+06/09/2026;Cafe da manha extra;2;25.00
+Bruno Oliveira;10000000076;301;04/08/2026;08/08/2026;2
+08/08/2026;Jantar regional;1;55.00
+07/08/2026;Refrigerante lata;1;7.50
+Ana Pereira;10000000077;301;15/08/2026;16/08/2026;2
+16/08/2026;Tacaca;2;18.00
+16/08/2026;Jantar regional;2;55.00
+Elaine Rocha;10000000078;301;23/08/2026;26/08/2026;2
+24/08/2026;Jantar regional;2;55.00
+24/08/2026;Suco de cupuacu;2;9.00
+Bruno Ferreira;10000000079;301;29/08/2026;03/09/2026;2
+31/08/2026;Tacaca;1;18.00
+30/08/2026;Tacaca;1;18.00
+Karina Lima;10000000080;301;05/09/2026;08/09/2026;2
+05/09/2026;Refrigerante lata;1;7.50
+08/09/2026;Cafe da manha extra;2;25.00
+Rafael Silva;10000000081;302;02/08/2026;04/08/2026;2
+04/08/2026;Jantar regional;1;55.00
+04/08/2026;Passeio de barco;1;80.00
+Elaine Almeida;10000000082;302;05/08/2026;08/08/2026;2
+05/08/2026;Agua de coco;3;6.00
+07/08/2026;Cafe da manha extra;2;25.00
+Diego Lima;10000000083;302;08/08/2026;10/08/2026;2
+08/08/2026;Peixe frito (porcao);1;48.00
+08/08/2026;Peixe frito (porcao);2;48.00
+Joao Costa;10000000084;302;12/08/2026;16/08/2026;2
+12/08/2026;Cafe da manha extra;1;25.00
+16/08/2026;Peixe frito (porcao);3;48.00
+Joao Rocha;10000000085;302;20/08/2026;24/08/2026;2
+21/08/2026;Tacaca;1;18.00
+24/08/2026;Refrigerante lata;2;7.50
+Bruno Lima;10000000086;303;01/08/2026;02/08/2026;2
+02/08/2026;Passeio de barco;3;80.00
+02/08/2026;Refrigerante lata;2;7.50
+Ana Lima;10000000087;303;08/08/2026;12/08/2026;2
+08/08/2026;Suco de cupuacu;3;9.00
+11/08/2026;Cafe da manha extra;2;25.00
+Carla Souza;10000000088;303;15/08/2026;20/08/2026;2
+16/08/2026;Refrigerante lata;1;7.50
+18/08/2026;Tacaca;3;18.00
+Ana Costa;10000000089;303;23/08/2026;28/08/2026;2
+23/08/2026;Suco de cupuacu;1;9.00
+24/08/2026;Cafe da manha extra;2;25.00
+Heitor Pereira;10000000090;303;03/09/2026;08/09/2026;2
+05/09/2026;Refrigerante lata;2;7.50
+04/09/2026;Refrigerante lata;1;7.50
+Lucas Pereira;10000000091;304;06/08/2026;11/08/2026;2
+07/08/2026;Passeio de barco;1;80.00
+09/08/2026;Tacaca;3;18.00
+Carla Oliveira;10000000092;304;17/08/2026;20/08/2026;2
+20/08/2026;Agua de coco;2;6.00
+19/08/2026;Agua de coco;1;6.00
+Diego Carvalho;10000000093;304;25/08/2026;26/08/2026;2
+26/08/2026;Peixe frito (porcao);3;48.00
+25/08/2026;Tacaca;3;18.00
+Mariana Carvalho;10000000094;304;28/08/2026;02/09/2026;2
+29/08/2026;Tacaca;1;18.00
+30/08/2026;Peixe frito (porcao);1;48.00
+Joao Almeida;10000000095;304;04/09/2026;09/09/2026;2
+05/09/2026;Peixe frito (porcao);2;48.00
+04/09/2026;Cafe da manha extra;3;25.00
+Karina Lima;10000000096;305;06/08/2026;08/08/2026;2
+07/08/2026;Jantar regional;1;55.00
+06/08/2026;Cafe da manha extra;2;25.00
+Paula Pereira;10000000097;305;11/08/2026;12/08/2026;2
+12/08/2026;Refrigerante lata;1;7.50
+11/08/2026;Passeio de barco;3;80.00
+Bruno Ferreira;10000000098;305;17/08/2026;20/08/2026;2
+17/08/2026;Cafe da manha extra;3;25.00
+18/08/2026;Tacaca;3;18.00
+Rafael Rocha;10000000099;305;27/08/2026;31/08/2026;2
+28/08/2026;Cafe da manha extra;2;25.00
+30/08/2026;Peixe frito (porcao);3;48.00
+Diego Rocha;10000000100;305;05/09/2026;07/09/2026;2
+07/09/2026;Peixe frito (porcao);2;48.00
+05/09/2026;Cafe da manha extra;3;25.00

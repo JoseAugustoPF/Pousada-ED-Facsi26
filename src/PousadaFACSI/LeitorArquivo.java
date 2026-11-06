@@ -104,7 +104,7 @@ public class LeitorArquivo {
 
                 if (hosp != null) {
                     hospedagensLidas.add(hosp);
-                    pousada.registrarHospedagem(hosp);
+                    pousada.restaurarHospedagem(hosp);
                 }
             }
 

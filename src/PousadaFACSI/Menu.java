@@ -2,6 +2,10 @@ package PousadaFACSI;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class Menu{
 
@@ -58,22 +62,29 @@ public class Menu{
                         removerConsumo();
                         break;
                     case 7:
-                        cadastrarHospedagem();
+                        buscarHospedagem();
                         break;
                     case 8:
                         menuOperacoes();
                         break;
                     case 9:
-                        System.out.println("Abrindo relatórios...");
+                        menuRelatorios();
                         break;
                     case 10:
-                        System.out.println("Salvando dados...");
+                        salvarDados();
                         break;
                     case 11:
-                        System.out.println("Encerrando o sistema...");
-                        break;
-                    default:
-                        System.out.println("Opção inválida!");
+                        String resposta;
+                        do {
+                            System.out.print("Deseja salvar os dados antes de sair? (S/N): ");
+                            resposta = scanner.nextLine();
+                            if (!resposta.equalsIgnoreCase("S") && !resposta.equalsIgnoreCase("N")) {
+                                System.out.println("Resposta inválida! Digite S ou N.");
+                            }
+                        } while (!resposta.equalsIgnoreCase("S") && !resposta.equalsIgnoreCase("N"));
+                        if (resposta.equalsIgnoreCase("S")) {
+                            salvarDados();
+                        }
                         break;
                     }
                 }
@@ -270,7 +281,7 @@ public class Menu{
         }
     }
 
-    private void cadastrarHospedagem() {
+    private void buscarHospedagem() {
         System.out.print("\nDigite o nome do hóspede: ");
         String hospede = scanner.nextLine();
         System.out.print("Digite o documento do hóspede: ");
@@ -355,7 +366,7 @@ public class Menu{
                 opcao = Integer.parseInt(scanner.nextLine());
                 switch (opcao) {
                     case 1:
-                        cadastrarHospedagem();
+                        buscarHospedagem();
                         break;
                     case 2:
                         cancelarHospedagem();
@@ -481,4 +492,125 @@ public class Menu{
         }
     }
 
+    private void menuRelatorios() {
+        int opcao;
+
+        do {
+            System.out.println("\n========== RELATÓRIOS ==========");
+            System.out.println("1 - Fechamento mensal");
+            System.out.println("2 - Lista de espera");
+            System.out.println("0 - Voltar ao menu principal");
+            System.out.println("================================");
+            System.out.print("Escolha uma opção: ");
+            try {
+                opcao = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException erro) {
+                System.out.println("Opção inválida! Digite um número.");
+                opcao = -1;
+                continue;
+            }
+            switch (opcao) {
+                case 1:
+                    fechamentoMensal();
+                    break;
+
+                case 2:
+                    imprimirListaEspera();
+                    break;
+
+                case 0:
+                    System.out.println("Voltando ao menu principal...");
+                    break;
+
+                default:
+                    System.out.println("Opção inválida!");
+                    break;
+            }
+        } while (opcao != 0);
+    }
+
+    private void fechamentoMensal() {
+        int mes = 0;
+        while (mes < 1 || mes > 12) {
+            System.out.print("Digite o mês do fechamento (1 a 12): ");
+            try {
+                mes = Integer.parseInt(scanner.nextLine());
+                if (mes < 1 || mes > 12) {
+                    System.out.println("Mês inválido! Digite um valor entre 1 e 12.");
+                }
+            } catch (NumberFormatException erro) {
+                System.out.println("Entrada inválida! Digite um número.");
+            }
+        }
+        int ano = 0;
+        while (ano < 2000 || ano > LocalDate.now().getYear()) {
+            System.out.print("Digite o ano do fechamento: ");
+            try {
+                ano = Integer.parseInt(scanner.nextLine());
+                if (ano < 2000 || ano > LocalDate.now().getYear()) {
+                    System.out.println("Ano inválido! Informe um ano entre 2000 e " + LocalDate.now().getYear() + ".");
+                }
+            } catch (NumberFormatException erro) {
+                System.out.println("Entrada inválida! Digite um ano numérico.");
+            }
+        }
+        String relatorio = pousada.fechamento(ano, mes);
+        System.out.println("\n" + relatorio);
+        File pasta = new File("saídas");
+        if (!pasta.exists()) {
+            pasta.mkdirs();
+        }
+        String nomeArquivo = String.format("fechamento_%02d_%d.txt", mes, ano);
+        File arquivo = new File(pasta, nomeArquivo);
+        try (PrintWriter escritor = new PrintWriter(new FileWriter(arquivo))) {
+            escritor.print(relatorio);
+            System.out.println("Relatório salvo com sucesso em: " + arquivo.getPath());
+
+        } catch (IOException erro) {
+            System.out.println("Erro ao salvar o relatório: " + erro.getMessage());
+        }
+    }
+
+    private void imprimirListaEspera() {
+        if (pousada.getEspera().isEmpty()) {
+            System.out.println("Não existem hospedagens na lista de espera.");
+            return;
+        }
+        System.out.println("\n========== LISTA DE ESPERA ==========");
+        int posicao = 1;
+        for (Hospedagem hospedagem : pousada.getEspera()) {
+            System.out.println("\nPosição: " + posicao);
+            System.out.println("Hóspede: " + hospedagem.getHospede());
+            System.out.println("Documento: " + hospedagem.getDocumento());
+            System.out.println("Check-in: " + hospedagem.getCheckin());
+            System.out.println("Checkout: " + hospedagem.getCheckout());
+            posicao++;
+        }
+        File pasta = new File("saidas");
+        if (!pasta.exists()) {
+            pasta.mkdirs();
+        }
+        File arquivo = new File(pasta, "espera.txt");
+        try (PrintWriter escritor = new PrintWriter(new FileWriter(arquivo))) {
+            int posicaoArquivo = 1;
+            for (Hospedagem hospedagem : pousada.getEspera()) {
+                escritor.println("Posição: " + posicaoArquivo);
+                escritor.println("Hóspede: " + hospedagem.getHospede());
+                escritor.println("Documento: " + hospedagem.getDocumento());
+                escritor.println("Check-in: " + hospedagem.getCheckin());
+                escritor.println("Checkout: " + hospedagem.getCheckout());
+                escritor.println("-----------------------------------");
+                posicaoArquivo++;
+            }
+            System.out.println("Lista de espera salva em: " + arquivo.getPath());
+        } catch (IOException erro) {
+            System.out.println("Erro ao salvar a lista de espera: " + erro.getMessage());
+        }
+    }
+
+    private void salvarDados() {
+        GravadorArquivo gravador = new GravadorArquivo();
+        String caminho = "dados/pousada.txt";
+        gravador.salvar(pousada, caminho);
+    }
 }

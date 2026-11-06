@@ -152,6 +152,17 @@ public class Pousada {
         return true;
     }
 
+    public void restaurarHospedagem(Hospedagem h) {
+        if (h == null || h.getQuarto() == null) {
+            throw new IllegalArgumentException("Hospedagem inválida");
+        }
+        if (!quartos.contains(h.getQuarto())) {
+            throw new IllegalArgumentException("Quarto não cadastrado");
+        }
+        hospedagens.add(h);
+        h.getQuarto().setJaTeveHospedagem(true);
+    }
+
     public Hospedagem cancelarHospedagem(Hospedagem h) {
         if (h == null || !hospedagens.contains(h)) {
             return null;
