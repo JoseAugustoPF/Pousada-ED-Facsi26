@@ -1,5 +1,6 @@
 package PousadaFACSI;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,6 +13,10 @@ public class GravadorArquivo {
 
     public void salvar(Pousada pousada, String caminho) {
         try {
+            File pasta = new File(caminho).getAbsoluteFile().getParentFile();
+            if (pasta != null && !pasta.exists()) {
+                pasta.mkdirs();
+            }
             PrintWriter pw = new PrintWriter(new FileWriter(caminho));
 
             pw.println(pousada.getNome() + ";" + pousada.getCidade());
